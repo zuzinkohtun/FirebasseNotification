@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebUI</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebUI</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - WebUI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>    
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-messaging.js"></script>
+    <script src="~/firebase-messaging-sw.js"></script>
+
+    @* <script type="module" src="~/lib/firebase/firebase-messaging.js" type="text/javascript"></script>
+    <script type="module" src="~/lib/firebase/firebase-app.js" type="text/javascript"></script> *@
+<script>
+    
+    $(function(){
+        var token = null;
+
+        const config = {
+        apiKey: "AIzaSyAesYQS4nx8FxGF6MUQu9iOpNjgpRhZ1u4",
+        authDomain: "fir-noti-test-d95e2.firebaseapp.com",
+        projectId: "fir-noti-test-d95e2",
+        storageBucket: "fir-noti-test-d95e2.appspot.com",
+        messagingSenderId: "803387992721",
+        appId: "1:803387992721:web:a696850e15af655ef9ad30",
+        measurementId: "G-T0XY326XDW"
+        };
+
+        firebase.initializeApp(config);
+        const messaging = firebase.messaging();   
+
+        console.log(firebase);
+        console.log(messaging);
+
+        messaging.requestPermission()
+        .then(function () {
+            console.log("granted");
+            // if (isTokenSentToServer()) {
+            //     console.log("already granted");
+            // }else{
+            //     getRegtoken();
+            // }
+            getRegtoken();
+        });
+
+    function getRegtoken() {
+        messaging.getToken().then((currentToken) => {
+            if (currentToken) {
+                console.log(currentToken);
+            }
+        }).catch ((err) => {
+                console.log(err);
+        });
+    }
+
+    messaging.onMessage(function (payload){
+        console.log('Message received. ');
+        //console.log('Message received. ', payload);
+    });
+
+//     messaging.onBackgroundMessage(function (payload) {
+//         console.log('[firebase-messaging-sw.js] Received background message ', payload);
+//           // Customize notification here
+//           const notificationTitle = 'Background Message Title';
+//           const notificationOptions = {
+//             body: 'Background Message body.',
+//             icon: '/firebase-logo.png'
+//       };
+
+//       self.registration.showNotification(notificationTitle,
+//         notificationOptions);
+// });
+
+    })
+    // import firebase from 'firebase/app';
+    // import 'firebase/messaging';
+
+    // import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js'
+
+    // // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+    // import { getMessaging } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-messaging-sw.js'
+    // import { getToken, onMessage } from 'https://www.gstatic.com/firebasejs/10.6.0/firebase-messaging.js'
+
+    // const firebaseConfig = {
+    //     apiKey: "AIzaSyAesYQS4nx8FxGF6MUQu9iOpNjgpRhZ1u4",
+    //     authDomain: "fir-noti-test-d95e2.firebaseapp.com",
+    //     projectId: "fir-noti-test-d95e2",
+    //     storageBucket: "fir-noti-test-d95e2.appspot.com",
+    //     messagingSenderId: "803387992721",
+    //     appId: "1:803387992721:web:a696850e15af655ef9ad30",
+    //     measurementId: "G-T0XY326XDW"
+    // };
+
+    // const firebaseApp = initializeApp({
+    //     apiKey: "AIzaSyAesYQS4nx8FxGF6MUQu9iOpNjgpRhZ1u4",
+    //     authDomain: "fir-noti-test-d95e2.firebaseapp.com",
+    //     projectId: "fir-noti-test-d95e2",
+    //     storageBucket: "fir-noti-test-d95e2.appspot.com",
+    //     messagingSenderId: "803387992721",
+    //     appId: "1:803387992721:web:a696850e15af655ef9ad30",
+    //     measurementId: "G-T0XY326XDW"
+    // });
+
+    // var app = initializeApp(firebaseConfig);
+    // var messaging = app.messaging();
+    //var messaging = getMessaging(config);
+
+    // const messaging = getMessaging(firebaseApp);
+
+    // getToken(messaging, { vapidKey: "AIzaSyAesYQS4nx8FxGF6MUQu9iOpNjgpRhZ1u4" }).then((currentToken) => {
+    //     if (currentToken) {
+    //         // Send the token to your server and update the UI if necessary
+    //         // ...
+    //         console.log(currentToken);
+    //     } else {
+    //         // Show permission request UI
+    //         console.log('No registration token available. Request permission to generate one.');
+    //         // ...
+    //     }
+    // }).catch((err) => {
+    //     console.log('An error occurred while retrieving token. ', err);
+    //     // ...
+    // });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // messaging.requestPermission()
+    //     .then(function () {
+    //         console.log("granted");
+    //         if (isTokenSentToServer()) {
+    //             console.log("already granted");
+    //         }else{
+    //             getRegtoken();
+    //         }
+    //     });
+
+    // function getRegtoken() {
+    //     messaging.getToken().then((currentToken) => {
+    //         if (currentToken) {
+    //             console.log(currentToken);
+    //         }
+    //     }).catch ((err) => {
+
+    //     });
+    // }
+
+    
+
+    // firebase.messaging().onMessage(notification => {
+    //     alert('Notification received!', notification);
+    // });
+        
+
+    // try {
+    //     if (firebase.messaging.isSupported()) {
+    //         const messaging = firebase.messaging();
+    //         messaging
+    //             .getToken({
+    //                 vapidKey: VAPID_KEY
+    //             })
+    //             .then((currentToken) => {
+    //                 if (currentToken) {
+    //                     subscribeTokenToTopic(currentToken, FirebaseAdminTopic);
+    //                 }
+    //             })
+    //             .catch((err) => {
+    //                 console.log('Error to get token', err);
+    //             });
+
+    //         messaging.onMessage((payload) => {
+    //             console.log(payload.notification)
+    //         });
+
+    //         // Otherwise, we need to ask the user for permission
+    //         if (Notification.permission !== 'granted') {
+    //             Notification.requestPermission();
+    //         }
+    //     } else {
+    //         console.log('firebase messaging not supported');
+    //     }
+    // } catch (err) {
+    //     console.log(err);
+    // }
+
+
+    // function subscribeTokenToTopic(token, topic) {
+    //     fetch(`https://iid.googleapis.com/iid/v1/${token}/rel/topics/${topic}`, {
+    //         method: 'POST',
+    //         headers: new Headers({
+    //             Authorization: `key=${FCM_SERVER_KEY}`
+    //         })
+    //     })
+    //         .then((response) => {
+    //             if (response.status < 200 || response.status >= 400) {
+    //                 console.log(response.status, response);
+    //             }
+    //             console.log(`"${topic}" is subscribed`);
+    //         })
+    //         .catch((error) => {
+    //             console.error(error.result);
+    //         });
+    //     return true;
+    // }
+
+</script>
+</body>
+</html>

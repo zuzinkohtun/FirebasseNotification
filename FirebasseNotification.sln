@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34024.191
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5B6FAE3F-9843-4D50-869C-637F9DC5A486}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NotificationAPI", "src\NotificationAPI\NotificationAPI.csproj", "{0E2D7AE5-EAC2-472A-89C2-7B1C5694C8EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "src\WebUI\WebUI.csproj", "{9E55E158-C18C-452B-AAE5-19F31C474EC9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0E2D7AE5-EAC2-472A-89C2-7B1C5694C8EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E2D7AE5-EAC2-472A-89C2-7B1C5694C8EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E2D7AE5-EAC2-472A-89C2-7B1C5694C8EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E2D7AE5-EAC2-472A-89C2-7B1C5694C8EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E55E158-C18C-452B-AAE5-19F31C474EC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E55E158-C18C-452B-AAE5-19F31C474EC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E55E158-C18C-452B-AAE5-19F31C474EC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E55E158-C18C-452B-AAE5-19F31C474EC9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0E2D7AE5-EAC2-472A-89C2-7B1C5694C8EE} = {5B6FAE3F-9843-4D50-869C-637F9DC5A486}
+		{9E55E158-C18C-452B-AAE5-19F31C474EC9} = {5B6FAE3F-9843-4D50-869C-637F9DC5A486}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {10D530FE-B854-4301-8ED8-007F06BABAE0}
+	EndGlobalSection
+EndGlobal
